@@ -6,20 +6,27 @@ async function main() {
   let mapWaves = {};
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
   const waveContract = await waveContractFactory.deploy();
-  let Twavecount = 0;
+  //let Twavecount = 0;
   await waveContract.deployed();
   console.log(
-    `Deployed WavePortal at ${waveContract.address} by ${owner.address}`
+    `Deployed WavePortal to ${waveContract.address} by ${owner.address}`
   );
   let waveCount;
-  waveCount = waveContract.getTotalWaves();
+  waveCount = await waveContract.getTotalWaves();
+  // console.log(`Total Waves: ${waveCount}`);
   let waveTxn;
   waveTxn = await waveContract.wave();
   await waveTxn.wait();
   waveCount = await waveContract.getTotalWaves();
-  mapWaves[randomDude.address] = parseInt(waveCount)
+  mapWaves[randomDude.address] = parseInt(waveCount);
   //Twavecount = [...waveCount];
-  console.log(mapWaves)
+  console.log(mapWaves);
+  // waveTxn = await waveContract.connect(randomDude).wave();
+  // await waveTxn.wait();
+  // waveCount = await waveContract.getTotalWaves();
+  // mapWaves[randomDude.address] = parseInt(waveCount);
+  // //Twavecount = [...waveCount];
+  // console.log(mapWaves);
 }
 
 main()

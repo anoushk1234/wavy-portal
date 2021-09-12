@@ -4,7 +4,7 @@ import "hardhat/console.sol";
 // SPDX-License-Identifier: UNLICENSED
 contract WavePortal {
     uint256 totalWaves;
-
+    
     constructor() {
         console.log("Dattebayo!!!");
     }

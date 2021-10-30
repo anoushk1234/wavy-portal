@@ -5,7 +5,10 @@ async function main() {
   console.log("🏭Depoying contracts with the account " + deployer.address);
   console.log("💰Account balance :",( await deployer.getBalance()).toString());
   const Token = await ethers.getContractFactory("WavePortal");
-  const token = await Token.deploy();
+  const token = await Token.deploy({
+    value: hre.ethers.utils.parseEther('0.0001'),
+  });
+  await token.deployed();
 
   console.log("🚀Deployed at " + token.address);
 }
